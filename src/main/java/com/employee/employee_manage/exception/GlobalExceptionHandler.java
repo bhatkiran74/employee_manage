@@ -22,7 +22,6 @@ import java.util.Map;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
-
     @ExceptionHandler(ResourseNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleResourseNotFoundException(ResourseNotFoundException exception, WebRequest webRequest) {
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(

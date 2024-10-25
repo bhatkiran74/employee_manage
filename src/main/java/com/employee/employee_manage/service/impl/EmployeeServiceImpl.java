@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
 
 /**
  * EmployeeServiceImpl.java
@@ -38,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPhoneNumbers(dto.getPhoneNumbers());
         Employee savedEmployee = repository.save(employee);
 
-        EmployeeDto savedEmployeeDto =new EmployeeDto();
+        EmployeeDto savedEmployeeDto = new EmployeeDto();
         savedEmployeeDto.setEmployeeId(savedEmployee.getEmployeeId());
         savedEmployeeDto.setFirstName(savedEmployee.getFirstName());
         savedEmployeeDto.setLastName(savedEmployee.getLastName());
@@ -51,10 +49,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto findEmployeeByEmployeeId(String empId) {
-        Employee employee= repository.findByEmployeeId(empId);
+        Employee employee = repository.findByEmployeeId(empId);
 
-        if (employee == null){
-            throw new ResourseNotFoundException("Employee","EmployeeId",empId);
+        if (employee == null) {
+            throw new ResourseNotFoundException("Employee", "EmployeeId", empId);
         }
         EmployeeDto dto = new EmployeeDto();
         dto.setEmployeeId(employee.getEmployeeId());

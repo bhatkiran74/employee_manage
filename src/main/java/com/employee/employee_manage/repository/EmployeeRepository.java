@@ -12,6 +12,6 @@ import java.util.Optional;
  * Description: This class implements JpaRepository
  **/
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee,Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Employee findByEmployeeId(String empId);
 }
