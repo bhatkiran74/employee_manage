@@ -13,6 +13,12 @@ import lombok.ToString;
 
 import java.util.List;
 
+
+/**
+ * Employee.java
+ * Author: Kiransing bhat
+ * Description: This class implements Employee
+ **/
 @Entity
 @Setter
 @Getter
