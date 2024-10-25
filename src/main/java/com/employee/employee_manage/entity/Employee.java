@@ -3,6 +3,8 @@ package com.employee.employee_manage.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -25,11 +27,14 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "employee")
+@Table
 public class Employee {
 
     @Id
     @Column
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
     private String employeeId;
     @Column
     private String firstName;

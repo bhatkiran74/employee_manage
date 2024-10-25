@@ -7,11 +7,11 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Data
+
 @Getter
 @Setter
-@Builder
 public class EmployeeDto {
+    private String employeeId;
     private String firstName;
     private String lastName;
     private String email;
