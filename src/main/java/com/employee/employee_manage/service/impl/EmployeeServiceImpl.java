@@ -2,12 +2,16 @@ package com.employee.employee_manage.service.impl;
 
 
 import com.employee.employee_manage.entity.Employee;
+import com.employee.employee_manage.exception.ResourseNotFoundException;
 import com.employee.employee_manage.repository.EmployeeRepository;
 import com.employee.employee_manage.service.EmployeeService;
 import com.employee.employee_manage.util.EmployeeDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * EmployeeServiceImpl.java
@@ -43,5 +47,23 @@ public class EmployeeServiceImpl implements EmployeeService {
         savedEmployeeDto.setDoj(savedEmployee.getDoj());
         savedEmployeeDto.setPhoneNumbers(savedEmployee.getPhoneNumbers());
         return savedEmployeeDto;
+    }
+
+    @Override
+    public EmployeeDto findEmployeeByEmployeeId(String empId) {
+        Employee employee= repository.findByEmployeeId(empId);
+
+        if (employee == null){
+            throw new ResourseNotFoundException("Employee","EmployeeId",empId);
+        }
+        EmployeeDto dto = new EmployeeDto();
+        dto.setEmployeeId(employee.getEmployeeId());
+        dto.setFirstName(employee.getFirstName());
+        dto.setLastName(employee.getLastName());
+        dto.setEmail(employee.getEmail());
+        dto.setSalary(employee.getSalary());
+        dto.setDoj(employee.getDoj());
+        dto.setPhoneNumbers(employee.getPhoneNumbers());
+        return dto;
     }
 }

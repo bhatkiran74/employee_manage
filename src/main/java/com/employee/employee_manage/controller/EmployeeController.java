@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
 
 
@@ -34,5 +37,13 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto dto){
         return new ResponseEntity<>(employeeService.createEmployee(dto), HttpStatus.CREATED);
     }
+    
+
+    @GetMapping("/{empId}")
+    public ResponseEntity<EmployeeDto> findEmployeeByEmployeeId(@PathVariable("empId")String empId){
+        EmployeeDto dto=employeeService.findEmployeeByEmployeeId(empId);
+        return new ResponseEntity<>(dto,HttpStatus.FOUND);
+    }
+
 
 }
