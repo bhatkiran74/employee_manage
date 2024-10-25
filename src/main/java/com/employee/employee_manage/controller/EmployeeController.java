@@ -3,6 +3,7 @@ package com.employee.employee_manage.controller;
 import com.employee.employee_manage.service.EmployeeService;
 import com.employee.employee_manage.util.EmployeeDto;
 import com.employee.employee_manage.util.ErrorResponseDto;
+import com.employee.employee_manage.util.TaxDeductionDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -70,6 +71,13 @@ public class EmployeeController {
     @GetMapping("/{empId}")
     public ResponseEntity<EmployeeDto> findEmployeeByEmployeeId(@PathVariable("empId") String empId) {
         EmployeeDto dto = employeeService.findEmployeeByEmployeeId(empId);
+        return new ResponseEntity<>(dto, HttpStatus.FOUND);
+    }
+
+
+    @GetMapping("/{empId}/tax-deductions")
+    public ResponseEntity<TaxDeductionDto> findEmployeesTaxDeductions(@PathVariable("empId") String empId) {
+        TaxDeductionDto dto = employeeService.findEmployeesTaxDeductions(empId);
         return new ResponseEntity<>(dto, HttpStatus.FOUND);
     }
 
